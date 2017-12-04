@@ -1,27 +1,40 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ -----------------------------------------------------------------------------------
+ Laboratoire : <nn>
+ Fichier     : <nom du fichier>.cpp
+ Auteur(s)   : <prénom> <nom>
+ Date        : <jj.mm.aaaa>
 
-/* 
- * File:   main.cpp
- * Author: nichu
- *
- * Created on 4. décembre 2017, 11:15
+ But         : <à compléter>
+
+ Remarque(s) : <à compléter>
+
+ Compilateur : MinGW-g++ <x.y.z>
+ -----------------------------------------------------------------------------------
  */
 
 #include <cstdlib>
 
+#include "carte.h"
+
 using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
-
+int main() {
+   char symboles[sizeof(Elements)];
+   symboles[(int)Elements::CHERCHEUR] = 'C';
+   symboles[(int)Elements::TRESOR] = 'X';
+   symboles[(int)Elements::LAC] = '~';
+   symboles[(int)Elements::VIDE] = '-';
+  
+   // note : 20 * 20 pour tester mais normalement 100*200
+   size_t largeur = 20;
+   size_t hauteur = 20;
+   char carte[largeur * hauteur];
    
-   cdcdc
-   return 0;
+   creerCarte(carte, symboles, largeur, hauteur);
+
+   afficherCarte(carte, largeur, hauteur);
+   
+   return EXIT_SUCCESS;
 }
 

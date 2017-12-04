@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Labo08_tresor
+PROJECTNAME=Labo08_Tresor
 
 # Active Configuration
 DEFAULTCONF=Debug
