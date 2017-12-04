@@ -19,13 +19,25 @@ void creerCarte(char carte[], const char symboles[],
  * place un élément à une coordonée de la carte
  * @param carte     la carte
  * @param symbole   le symbole à ajouter
- * @param x      la coordonnée x
- * @param y      la coordonnée y
+ * @param x         la coordonnée x
+ * @param y         la coordonnée y
+ * @param largeur   la largeur de la carte
+ * @param hauteur   la hauteur de la carte
+ * @return l'ancien contenu de la case
+ */
+char placerSurLaCarte(char carte[], const char& symbole, int x, int y,
+                      size_t largeur, size_t hauteur);
+
+/**
+ * place un élément à une coordonée aléatoire de la carte
+ * @param carte     la carte
+ * @param symbole   le symbole à ajouter
+ * @param symboles  les symboles représentant les éléments de la carte
  * @param largeur   la largeur de la carte
  * @param hauteur   la hauteur de la carte
  */
-void placerSurLaCarte(char carte[], const char symbole, int x, int y,
-                      size_t largeur, size_t hauteur);
+void placerSurLaCarteAleatoirement(char carte[], const char& symbole, const char symboles[],
+                                   size_t largeur, size_t hauteur);
 
 /**
  * afficher la carte et ses éléments

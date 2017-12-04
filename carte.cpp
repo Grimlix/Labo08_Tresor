@@ -12,21 +12,28 @@ void creerCarte(char carte[], const char symboles[],
       carte[cellule] = symboles[(int)Elements::VIDE];
    }
 
-   
-   // placer le trésor aléatoirement
-   posX = nombreAleatoire(largeur, 0);
-   posY = nombreAleatoire(hauteur, 0);
-   placerSurLaCarte(carte, symboles[(int)Elements::TRESOR], posX, posY, largeur, hauteur);
-   
-   // placer le chercheur aléatoirement | /!\ pourrait être placé sur un trésor
-   posX = nombreAleatoire(largeur, 0);
-   posY = nombreAleatoire(hauteur, 0);
-   placerSurLaCarte(carte, symboles[(int)Elements::CHERCHEUR], posX, posY, largeur, hauteur);
+   placerSurLaCarteAleatoirement(carte, symboles[(int)Elements::CHERCHEUR], symboles, largeur, hauteur);
+   placerSurLaCarteAleatoirement(carte, symboles[(int)Elements::TRESOR], symboles, largeur, hauteur);
 }
 
-void placerSurLaCarte(char carte[], const char symbole, int x, int y,
+char placerSurLaCarte(char carte[], const char& symbole, int x, int y,
                       size_t largeur, size_t hauteur) {
    int pos = coordonneesAPlat(x, y, largeur, hauteur);
+   char ancienContenu = carte[pos];
+   carte[pos] = symbole;
+   
+   return ancienContenu;
+}
+
+void placerSurLaCarteAleatoirement(char carte[], const char& symbole, const char symboles[],
+                                   size_t largeur, size_t hauteur) {
+   int pos, x, y;
+
+   do {
+      x = nombreAleatoire(largeur, 0);
+      y = nombreAleatoire(hauteur, 0);
+      pos = coordonneesAPlat(x, y, largeur, hauteur);
+   } while(carte[pos] != symboles[(int)Elements::VIDE]); // on s'assure que la case est vide
 
    carte[pos] = symbole;
 }
