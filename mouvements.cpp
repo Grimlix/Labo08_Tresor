@@ -8,4 +8,4 @@ ouest = direction::OUEST;
 
 
 
-void mouvement ()
+// void mouvement ()

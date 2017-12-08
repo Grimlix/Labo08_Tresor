@@ -2,61 +2,32 @@
 #define CARTE_H
 
 #include <iostream>
+#include "elements.h" // NB_PROPRIETES
 
-enum class Elements { CHERCHEUR, TRESOR, LAC, VIDE };
+// 20 * 20 pour tester mais normalement 100, 200
+const size_t LARGEUR = 20;
+const size_t HAUTEUR = 20;
 
-/**
- * permet de placer les différents éléments sur une carte
- * @param carte             la carte
- * @param symboles          les symboles représentant les éléments de la carte
- * @param largeur           la largeur de la carte
- * @param hauteur           la hauteur de la carte
- */
-void creerCarte(char carte[], const char symboles[],
-                size_t largeur = 100, size_t hauteur = 200);
+const size_t NB_CHERCHEURS = 1;
+const size_t NB_TRESORS = 1;
+const size_t NB_LACS = 3;
 
-/**
- * place un élément à une coordonée de la carte
- * @param carte     la carte
- * @param symbole   le symbole à ajouter
- * @param x         la coordonnée x
- * @param y         la coordonnée y
- * @param largeur   la largeur de la carte
- * @param hauteur   la hauteur de la carte
- * @return l'ancien contenu de la case
- */
-char placerSurLaCarte(char carte[], const char& symbole, int x, int y,
-                      size_t largeur, size_t hauteur);
+namespace Carte {
+   enum Elements { CHERCHEUR, TRESOR, LAC, VIDE };
+}
 
-/**
- * place un élément à une coordonée aléatoire de la carte
- * @param carte     la carte
- * @param symbole   le symbole à ajouter
- * @param symboles  les symboles représentant les éléments de la carte
- * @param largeur   la largeur de la carte
- * @param hauteur   la hauteur de la carte
- */
-void placerSurLaCarteAleatoirement(char carte[], const char& symbole, const char symboles[],
-                                   size_t largeur, size_t hauteur);
+void creerCarte(int carte[HAUTEUR][LARGEUR]);
 
-/**
- * afficher la carte et ses éléments
- * @warning cette fonction n'est utile que pour visualiser de petites cartes
- * @param carte    la carte à afficher
- * @param largeur  la largeur de la carte
- * @param hauteur  la hauteur de la carte
- */
-void afficherCarte(const char carte[], size_t largeur, size_t hauteur);
+void viderCarte(int carte[HAUTEUR][LARGEUR]);
 
-/**
- * convertit une coordonnée x, y en une position en entier
- * @param x        la coordonnée x
- * @param y        la coordonnée y
- * @param largeur  la largeur de la carte
- * @param hauteur  la heuteur de la cartes
- * @return la position en entier
- */
-int coordonneesAPlat(int x, int y, size_t largeur, size_t hauteur);
+void definirTypeElements(int elements[][NB_PROPRIETES], size_t nbElements, const int type);
+
+void remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type);
+
+void afficherCarte(const int carte[HAUTEUR][LARGEUR]);
+
+int distancePoint(const int& lx, const int& ly, const int& rx, const int& ry);
+
+//void creerDisqueElement(double rayon);
 
 #endif /* CARTE_H */
-

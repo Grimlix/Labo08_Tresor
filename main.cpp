@@ -20,20 +20,13 @@
 using namespace std;
 
 int main() {
-   char symboles[sizeof(Elements)];
-   symboles[(int)Elements::CHERCHEUR] = 'C';
-   symboles[(int)Elements::TRESOR] = 'X';
-   symboles[(int)Elements::LAC] = '~';
-   symboles[(int)Elements::VIDE] = '-';
-  
-   // note : 20 * 20 pour tester mais normalement 100*200
-   size_t largeur = 20;
-   size_t hauteur = 20;
-   char carte[largeur * hauteur];
+   int carte[HAUTEUR][LARGEUR] = {};
    
-   creerCarte(carte, symboles, largeur, hauteur);
+   creerCarte(carte);
 
-   afficherCarte(carte, largeur, hauteur);
+   afficherCarte(carte);
+   
+   //creerDisqueElement(3.5);
    
    return EXIT_SUCCESS;
 }
