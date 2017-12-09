@@ -31,7 +31,7 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
-   if((y >= 0 && y <= HAUTEUR) && (x >= 0 && x <= LARGEUR)) {
+   if((y >= 0 && y <= HAUTEUR - 1) && (x >= 0 && x <= LARGEUR - 1)) {
       carte[y][x] = type;
 
       return true;
@@ -71,27 +71,25 @@ int distancePoint(const int& lx, const int& ly, const int& rx, const int& ry) {
    return abs(lx - rx) + abs(ly - ry);
 }
 
-void creerDisque(int carte[HAUTEUR][LARGEUR], const size_t centreX, const size_t centreY, const int type, const double rayon) {
+void creerDisque(int carte[HAUTEUR][LARGEUR], const size_t centreX, const size_t centreY, const int type, const int rayon) {
    if(rayon > 0) {
-      size_t diametre = (size_t)(2 * rayon);
+      size_t diametre = (size_t)(2 * (rayon + 0.5)); // le rayon doit avoir une "moitié de case" pour que le diamètre soit correct
       
-      size_t premierX = (size_t)(centreX - floor(rayon));
-      size_t premierY = (size_t)(centreY - floor(rayon));
-      size_t dernierX = premierX + diametre;
-      size_t dernierY = premierY + diametre;
+      int premierX = (int)(centreX - rayon);
+      int premierY = (int)(centreY - rayon);
+      int dernierX = premierX + diametre;
+      int dernierY = premierY + diametre;
 
       double distanceCentre;
-
-      for(size_t y = premierY; y < dernierY; ++y) {
-         for(size_t x = premierX; x < dernierX; ++x) {
+ 
+      for(int y = premierY; y < dernierY; ++y) {
+         for(int x = premierX; x < dernierX; ++x) {
             distanceCentre = distancePoint(x, y, centreX, centreY);
 
-            if(distanceCentre <= rayon) {
+            if(distanceCentre <= rayon + 0.5) {
                remplacerCase(carte, x, y, type);
             }
          }
-         
-         std::cout << std::endl;
-      }      
+      }
    }
 }

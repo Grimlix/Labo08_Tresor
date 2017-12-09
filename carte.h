@@ -25,6 +25,6 @@ void afficherCarte(const int carte[HAUTEUR][LARGEUR]);
 
 int distancePoint(const int& lx, const int& ly, const int& rx, const int& ry);
 
-void creerDisque(int carte[HAUTEUR][LARGEUR], const size_t centreX, const size_t centreY, const int type, const double rayon);
+void creerDisque(int carte[HAUTEUR][LARGEUR], const size_t centreX, const size_t centreY, const int type, const int rayon);
 
 #endif /* CARTE_H */

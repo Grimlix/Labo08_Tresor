@@ -11,12 +11,13 @@ void Terrains::positioner(int carte[HAUTEUR][LARGEUR], int terrains[][Terrains::
          y = nombreAleatoire(HAUTEUR - 1, 0);
       } while(not(carte[y][x] == Carte::TypeCase::VIDE));
 
+      int rayon = nombreAleatoire(((LARGEUR - 1) + (HAUTEUR - 1)) / (2 * nbTerrains), 1);
+
       terrains[terrain][Terrains::Proprietes::x] = x;
       terrains[terrain][Terrains::Proprietes::y] = y;
+      terrains[terrain][Terrains::Proprietes::rayon] = rayon;
 
-      double rayon = nombreAleatoire(((LARGEUR - 1) + (HAUTEUR-1)) / 2 * nbTerrains);
-
-      creerDisque(carte, x, y, Proprietes::type, rayon);
+      creerDisque(carte, x, y, terrains[terrain][Terrains::Proprietes::type], rayon);
    }
 }
 
