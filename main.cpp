@@ -25,9 +25,7 @@ int main() {
    creerCarte(carte);
 
    afficherCarte(carte);
-   
-   //creerDisqueElement(3.5);
-   
+
    return EXIT_SUCCESS;
 }
 
