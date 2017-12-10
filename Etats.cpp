@@ -1,20 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
-#include <iostream>
+#include "etats.h"
+#include "terrains.h"
+#include "carte.h"
 
+#include <cmath>
 
-using namespace std;
-
-const unsigned int pasMaximum = 20000;
 
 bool estMort (int nbrePas){ 
+   const int pasMaximum = HAUTEUR * LARGEUR;
    if (nbrePas > pasMaximum){
-      cout << "Le chercheur est mort de faim" << endl;
+      std::cout << "Le chercheur est mort de faim" << std::endl;
       return true;
    }
    else{
@@ -22,37 +19,58 @@ bool estMort (int nbrePas){
    } 
 }
 
-bool estNoye (char nouvellePositionChercheur){
-   if (nouvellePositionChercheur == '~'){
-      cout << "Le chercheur s'est noye" << endl;
+bool estDansLac(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES], int positionLacs[NB_LACS][Terrains::NB_PROPRIETES]){
+   
+   int x = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::x];
+   int y = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::y];
+   int centreX = positionLacs[NB_LACS][Terrains::Proprietes::x];
+   int centreY = positionLacs[NB_LACS][Terrains::Proprietes::y];
+   int rayon = positionLacs[NB_LACS][Terrains::Proprietes::rayon];
+   
+   if(pow((x-centreX),2)+pow((y-centreY),2) <= rayon*rayon){
       return true;
    }
-   else{
+   else {
       return false;
    }
 }   
    
-bool estPerdu (char nouvellePositionChercheur){
-   if (nouvellePositionChercheur == ' '){
-       cout << "Le chercheur s'est perdu" << endl;
-       return true;
-   }
-   else{
-       return false;
-   }
-}
-
-bool victoire (char nouvellePositionChercheur){
-   if (nouvellePositionChercheur == 'x'){
-      cout << "Le chercheur a trouve le tresor" << endl;
+bool estPerdu(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES], const int HAUTEUR, const int LARGEUR){
+   const int largeurMin = 0;
+   const int longueurMin = 0;
+   int longueurMax = HAUTEUR;
+   int largeurMax = LARGEUR;
+   
+   int x = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::x];
+   int y = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::y];
+   
+   if(x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax){
       return true;
    }
-   else{
+   else {
       return false;
    }
 }
 
+bool aGagne(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES],
+            int positionTresor[NB_TRESORS][Elements::NB_PROPRIETES]){
+   
+   int xC = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::x];
+   int yC = positionChercheur[NB_CHERCHEURS][Elements::Proprietes::y];
+   
+   int xT = positionTresor[NB_TRESORS][Elements::Proprietes::x];
+   int yT = positionTresor[NB_TRESORS][Elements::Proprietes::y];
+   
+   
+   if(xC == xT && yC == yT){
+      return true;
+   }
+   else {
+      return false;
+   }
+}
 
+*/
 
 
 

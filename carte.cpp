@@ -28,6 +28,8 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    Terrains::positioner(carte, lacs, NB_LACS);
    Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
    Elements::positioner(carte, tresors, NB_CHERCHEURS);
+   
+   Elements::bouger(carte, chercheurs, lacs, tresors);
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
