@@ -15,15 +15,15 @@ namespace Elements {
                       int positionTresor[][Elements::NB_PROPRIETES]);
    
    void definirType(int elements[][NB_PROPRIETES], const size_t nbElements, const int type);
-   
+   /*
    bool estMort (int nbrePas);
 
-   bool estDansLac(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES], int positionsLacs[NB_LACS][Terrains::NB_PROPRIETES]);  
+   bool estDansLac(int positionChercheur[][Elements::NB_PROPRIETES], int positionsLacs[][Terrains::NB_PROPRIETES]);  
    
-   bool estPerdu(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES], const int HAUTEUR, const int LARGEUR);
+   bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES], const int HAUTEUR, const int LARGEUR);
 
-   bool aGagne(int positionChercheur[NB_CHERCHEURS][Elements::NB_PROPRIETES], int positionTresor[NB_TRESORS][Elements::NB_PROPRIETES]);
+   bool aGagne(int positionChercheur[][Elements::NB_PROPRIETES], int positionTresor[][Elements::NB_PROPRIETES]);
+    */
 }
 
 #endif /* ELEMENTS_H */
-

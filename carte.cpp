@@ -28,7 +28,7 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    Terrains::positioner(carte, lacs, NB_LACS);
    Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
    Elements::positioner(carte, tresors, NB_CHERCHEURS);
-   
+   afficherCarte(carte);
    Elements::bouger(carte, chercheurs, lacs, tresors);
 }
 
