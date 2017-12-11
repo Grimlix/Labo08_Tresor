@@ -1,7 +1,7 @@
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
-#include "carte.h" // LARGEUR, HAUTEUR
+// #include "carte.h" // LARGEUR, HAUTEUR
 #include "terrains.h"
 
 namespace Elements {

@@ -1,8 +1,11 @@
 #include <iostream>
 #include <cmath> // floor
 
+//#include "elements.h"
+//#include "terrains.h"
 #include "carte.h"
 #include "aleatoire.h"
+
 
 void creerCarte(int carte[HAUTEUR][LARGEUR],
         int& lacs[][Terrains::NB_PROPRIETES],
