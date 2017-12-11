@@ -4,21 +4,14 @@
 #include "carte.h"
 #include "aleatoire.h"
 
-#include "terrains.h"
-#include "elements.h"
-
-void creerCarte(int carte[HAUTEUR][LARGEUR]) {
+void creerCarte(int carte[HAUTEUR][LARGEUR],
+        int& lacs[][Terrains::NB_PROPRIETES],
+        int& chercheurs[][Elements::NB_PROPRIETES],
+        int& tresors[][Elements::NB_PROPRIETES]) {
    initialiserAleatoire();
 
    viderCarte(carte);
 
-   ////////////
-   // ELEMENTS
-   ////////////
-   int lacs[NB_LACS][Terrains::NB_PROPRIETES];
-   int chercheurs[NB_CHERCHEURS][Elements::NB_PROPRIETES];
-   int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
-           
    // définir les types des tableaux d'éléments / de terrain
    Terrains::definirType(lacs, NB_LACS, Carte::TypeCase::LAC);
    Elements::definirType(chercheurs, NB_CHERCHEURS, Carte::TypeCase::CHERCHEUR);
@@ -28,14 +21,6 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    Terrains::positioner(carte, lacs, NB_LACS);
    Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
    Elements::positioner(carte, tresors, NB_CHERCHEURS);
-   
-   afficherCarte(carte);
-   
-   int ancienContenuCase = Elements::bougerAleatoirement(carte, chercheurs, 0);
-   
-   std::cout << "ancienContenuCase : " << ancienContenuCase << std::endl;
-
-   afficherCarte(carte);   
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {

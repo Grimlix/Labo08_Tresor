@@ -5,6 +5,7 @@
 #include <cmath>
 
 namespace Elements {
+   
    void positioner(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], const size_t nbElements) {
       for(size_t element = 0; element < nbElements; ++element) {
          int x;

@@ -2,6 +2,8 @@
 #define CARTE_H
 
 #include <iostream> // size_t
+#include "terrains.h"
+#include "elements.h"
 
 // 20 * 20 pour tester mais normalement 100, 200
 const size_t LARGEUR = 20;
@@ -16,7 +18,10 @@ namespace Carte {
    enum Direction { NORD, SUD, OUEST, EST };
 }
 
-void creerCarte(int carte[HAUTEUR][LARGEUR]);
+void creerCarte(int carte[HAUTEUR][LARGEUR],
+        int& lacs[][Terrains::NB_PROPRIETES],
+        int& chercheurs[][Elements::NB_PROPRIETES],
+        int& tresors[][Elements::NB_PROPRIETES]);
 
 void viderCarte(int carte[HAUTEUR][LARGEUR]);
 
