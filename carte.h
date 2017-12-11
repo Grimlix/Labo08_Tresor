@@ -13,6 +13,7 @@ const size_t NB_LACS = 3;
 
 namespace Carte {
    enum TypeCase { CHERCHEUR, TRESOR, LAC, VIDE };
+   enum Direction { NORD, SUD, OUEST, EST };
 }
 
 void creerCarte(int carte[HAUTEUR][LARGEUR]);

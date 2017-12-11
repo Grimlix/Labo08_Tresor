@@ -28,8 +28,14 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    Terrains::positioner(carte, lacs, NB_LACS);
    Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
    Elements::positioner(carte, tresors, NB_CHERCHEURS);
+   
    afficherCarte(carte);
-   Elements::bouger(carte, chercheurs, lacs, tresors);
+   
+   int ancienContenuCase = Elements::bougerAleatoirement(carte, chercheurs, 0);
+   
+   std::cout << "ancienContenuCase : " << ancienContenuCase << std::endl;
+
+   afficherCarte(carte);   
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {

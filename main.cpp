@@ -23,15 +23,9 @@ int main() {
    
    // INITIALISATION
    int carte[HAUTEUR][LARGEUR] = {};
+
    creerCarte(carte);
 
-   bool etatChercheur = false;
-   do{
-      
-   afficherCarte(carte);
-   
-   
-   }
    return EXIT_SUCCESS;
 }
 
