@@ -24,6 +24,7 @@
 using namespace std;
 
 int main() {
+   
    do {
       // initialisation des variables pour les statistiques
       int nbEssai;
@@ -35,14 +36,14 @@ int main() {
 
       // saisie du nombre de simulations que l'on veut tester
       nbEssai = saisieUtilisateur();
-
+  
       // boucle des simulations
       simulation(carte, pasTotaux, nombreDeVictoires, nbEssai);
 
       // Calcule et affichage des statistiques
       int moyennePas = calculeTotal(pasTotaux, nbEssai);
       cout << "La moyenne de pas par simulation est de environs : " << moyennePas << " pas" << endl;
-      int pourcentageVictoire = calculePourcentage(nombreDeVictoires, nbEssai);
+      float pourcentageVictoire = calculePourcentage(nombreDeVictoires, nbEssai);
       cout << "Le pourcentage de victoire par simulation est de environs : " << pourcentageVictoire << "%" << endl;
 
    } while(recommencerProgramme());

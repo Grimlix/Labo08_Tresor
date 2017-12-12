@@ -7,12 +7,20 @@
 
 using namespace std;
 
-bool estMort(int nbrePas) {
+
+// Le chercheur meurt lorsqu'il fait plus de pas que
+// toutes les cases réunies de la carte. C'est pourquoi
+// on va vérifier que ses pas soient plus petit que la 
+// hauteur et la largeur de la carte
+bool estMort(int nbrePas) { 
    const int pasMaximum = HAUTEUR * LARGEUR;
    
    return (nbrePas > pasMaximum);
 }
 
+// Le chercheur decède lorsqu'il touche de l'eau, c'est pourquoi
+// on va vérifier que c'est coordonnées n'approche pas le rayon
+// d'un des lacs posés aléatoirement
 bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
         int lacs[][Terrains::NB_PROPRIETES], size_t numChercheur) {
 
@@ -35,6 +43,9 @@ bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
    return false;
 } 
 
+// Le chercheur est perdu quand il sort de la carte,
+// on va alors vérifier que ses coordonnées x et y ne depasse pas
+// les limites de la carte
 bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES], size_t numChercheur) {
    const int largeurMin = 0;
    const int longueurMin = 0;
@@ -47,6 +58,9 @@ bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES], size_t numCherch
    return (x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax);
 }
 
+// Le chercheur est riche lorsqu'il trouve le tresor,
+// on a vérifier que la valeur x ET la valeur y du chercheur
+// soient égales à celles du tresor posées aléatoirement
 bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
             int tresors[][Elements::NB_PROPRIETES],
             size_t numChercheur) {
