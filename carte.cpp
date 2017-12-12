@@ -38,7 +38,7 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
       chercheurs[essai][Elements::Proprietes::etat] = Etats::EXPLORE;
       
       do {
-         bougerAleatoirementElements(carte, chercheurs);
+         bougerAleatoirementElements(carte, chercheurs, essai);
          pas++;
 
          if(estMort(pas)) {
