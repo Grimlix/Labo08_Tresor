@@ -3,7 +3,6 @@
 
 #include <iostream> // size_t
 
-
 // 20 * 20 pour tester mais normalement 100, 200
 const size_t LARGEUR = 20;
 const size_t HAUTEUR = 20;
@@ -14,6 +13,7 @@ const size_t NB_LACS = 3;
 
 namespace Carte {
    enum TypeCase { CHERCHEUR, TRESOR, LAC, VIDE };
+   enum Direction { NORD, SUD, OUEST, EST };
 }
 
 void creerCarte(int carte[HAUTEUR][LARGEUR]);

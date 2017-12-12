@@ -19,21 +19,20 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
 
    // définir les types des tableaux d'éléments / de terrain
-   Terrains::definirType(lacs, NB_LACS, Carte::TypeCase::LAC);
-   Elements::definirType(chercheurs, NB_CHERCHEURS, Carte::TypeCase::CHERCHEUR);
-   Elements::definirType(tresors, NB_TRESORS, Carte::TypeCase::TRESOR);
-   
-   // placer les éléments
-   Terrains::positioner(carte, lacs, NB_LACS);
-   Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
-   Elements::positioner(carte, tresors, NB_CHERCHEURS);
+   definirTypeTerrains(lacs, NB_LACS, Carte::TypeCase::LAC);
+   definirTypeElements(chercheurs, NB_CHERCHEURS, Carte::TypeCase::CHERCHEUR);
+   definirTypeElements(tresors, NB_TRESORS, Carte::TypeCase::TRESOR);
+ 
+   positionerTerrains(carte, lacs, NB_LACS);
+   positionerElements(carte, chercheurs, NB_CHERCHEURS);
+   positionerElements(carte, tresors, NB_CHERCHEURS);
    afficherCarte(carte);
    
    bool etatChercheur;
    int pas = 0;
    do{
       
-      Elements::bouger(carte, chercheurs);
+      bougerAleatoirementElements(carte, chercheurs, 0);
       afficherCarte(carte);
       std::cout << std::endl;
       pas++;

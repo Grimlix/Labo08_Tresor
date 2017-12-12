@@ -31,7 +31,7 @@ int main() {
            
    creerCarte(carte);
    afficherCarte(carte);
-    
+
    return EXIT_SUCCESS;
 }
 
