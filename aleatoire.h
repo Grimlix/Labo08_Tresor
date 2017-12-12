@@ -16,4 +16,3 @@ int nombreAleatoire(const int& maxValue, const int& minValue = 0);
 void initialiserAleatoire();
 
 #endif /* ALEATOIRE_H */
-

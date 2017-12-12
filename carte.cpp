@@ -1,19 +1,22 @@
 #include <iostream>
 #include <cmath> // floor
 
-//#include "elements.h"
-//#include "terrains.h"
 #include "carte.h"
 #include "aleatoire.h"
+#include "elements.h"
+#include "etats.h"
 
-
-void creerCarte(int carte[HAUTEUR][LARGEUR],
-        int& lacs[][Terrains::NB_PROPRIETES],
-        int& chercheurs[][Elements::NB_PROPRIETES],
-        int& tresors[][Elements::NB_PROPRIETES]) {
+void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    initialiserAleatoire();
 
    viderCarte(carte);
+   
+   ////////////
+   // ELEMENTS
+   ////////////
+   int lacs[NB_LACS][Terrains::NB_PROPRIETES];
+   int chercheurs[NB_CHERCHEURS][Elements::NB_PROPRIETES];
+   int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
 
    // définir les types des tableaux d'éléments / de terrain
    Terrains::definirType(lacs, NB_LACS, Carte::TypeCase::LAC);
@@ -24,6 +27,23 @@ void creerCarte(int carte[HAUTEUR][LARGEUR],
    Terrains::positioner(carte, lacs, NB_LACS);
    Elements::positioner(carte, chercheurs, NB_CHERCHEURS);
    Elements::positioner(carte, tresors, NB_CHERCHEURS);
+   afficherCarte(carte);
+   
+   bool etatChercheur;
+   int pas = 0;
+   do{
+      
+      Elements::bouger(carte, chercheurs);
+      afficherCarte(carte);
+      std::cout << std::endl;
+      pas++;
+      
+      etatChercheur = estMort(pas);
+      etatChercheur = estDansLac(chercheurs, lacs);
+      etatChercheur = aGagne(chercheurs, tresors);
+      etatChercheur = estPerdu(chercheurs);
+        
+   }while(etatChercheur == false);
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {

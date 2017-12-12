@@ -2,10 +2,11 @@
 #define ETATS_H
 
 #include "elements.h"
+#include "terrains.h"
 
 bool estMort (int nbrePas);
 
-bool estDansLac(int positionChercheur[][Elements::NB_PROPRIETES], int positionLacs[][Terrains::NB_PROPRIETES]);  
+bool estDansLac(int positionChercheur[][Elements::NB_PROPRIETES], int positionsLacs[][Terrains::NB_PROPRIETES]);  
    
 bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES]);
 

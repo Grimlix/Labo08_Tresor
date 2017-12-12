@@ -1,7 +1,7 @@
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
-// #include "carte.h" // LARGEUR, HAUTEUR
+#include "carte.h" // LARGEUR, HAUTEUR
 #include "terrains.h"
 
 namespace Elements {
@@ -11,9 +11,7 @@ namespace Elements {
    
    void positioner(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], const size_t nbElements);
    
-   int bouger(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], const int numElement, Carte::Direction direction);
-   
-   int bougerAleatoirement(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], const int numElement);
+   void bouger(int carte[HAUTEUR][LARGEUR], int positionChercheur[][NB_PROPRIETES]);
    
    void definirType(int elements[][NB_PROPRIETES], const size_t nbElements, const int type);
 

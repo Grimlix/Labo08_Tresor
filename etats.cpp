@@ -1,10 +1,9 @@
-#include "elements.h"
 #include "etats.h"
-#include "terrains.h"
-#include "carte.h"
 #include "aleatoire.h"
+#include "carte.h"
+
+
 #include <cstdlib>
-#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -28,26 +27,36 @@ bool estMort (int nbrePas){
       int y = positionChercheur[0][Elements::Proprietes::y];
       int centreX = positionLacs[0][Elements::Proprietes::x];
       int centreY = positionLacs[0][Elements::Proprietes::y];
-      int rayon = positionLacs[0][Elements::Proprietes::rayon];
+      int rayon = positionLacs[0][Terrains::Proprietes::rayon];
+      
+//      char chercheur = Carte::TypeCase::CHERCHEUR;
+//      char lac = Carte::TypeCase::LAC;
+//      
+//      if(bool estDansEau = creerDisque(carte, )){
+//         std::cout << "Le chercheur s'est noye" << std::endl;
+//         return true;  
+//     }
 
       if(pow((x-centreX),2)+pow((y-centreY),2) <= rayon*rayon){
-         return true;
+         std::cout << "Le chercheur s'est noye" << std::endl;
+         return true; 
       }
       else {
          return false;
       }
    }   
 
-   bool estPerdu(int positionChercheur[][NB_PROPRIETES]){
+   bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES]){
       const int largeurMin = 0;
       const int longueurMin = 0;
-      int longueurMax = HAUTEUR;
-      int largeurMax = LARGEUR;
+      int longueurMax = LARGEUR;
+      int largeurMax = HAUTEUR;
 
-      int x = positionChercheur[NB_CHERCHEURS][Proprietes::x];
-      int y = positionChercheur[NB_CHERCHEURS][Proprietes::y];
+      int x = positionChercheur[0][Elements::Proprietes::x];
+      int y = positionChercheur[0][Elements::Proprietes::y];
 
       if(x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax){
+         std::cout << "Le chercheur s'est perdu" << std::endl;
          return true;
       }
       else {
@@ -66,6 +75,7 @@ bool estMort (int nbrePas){
 
 
       if(xC == xT && yC == yT){
+         std::cout << "Le chercheur a trouve le tresor" << std::endl;
          return true;
       }
       else {

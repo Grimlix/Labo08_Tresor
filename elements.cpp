@@ -22,36 +22,33 @@ namespace Elements {
          remplacerCase(carte, x, y, elements[element][Proprietes::type]);
       }
    }
+   
+   void bouger(int carte[HAUTEUR][LARGEUR], int positionChercheur[][NB_PROPRIETES]){
 
-   int bouger(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], int numElement, Carte::Direction direction) {
-      // remplacer la case où l'élément était par du vide
-      remplacerCase(carte, elements[numElement][Proprietes::x] , elements[0][Proprietes::y], Carte::TypeCase::VIDE);
-      
-      switch(direction) {
-         case Carte::Direction::NORD :
-            elements[numElement][Proprietes::y] -= 1;
-            break;
-         case Carte::Direction::SUD :
-            elements[numElement][Proprietes::y] += 1;
-            break;
-         case Carte::Direction::OUEST :
-            elements[numElement][Proprietes::x] -= 1;
-            break;
-         case Carte::Direction::EST :
-            elements[numElement][Proprietes::x] += 1;
-            break;
-      }
+         int directionAleatoire = nombreAleatoire(3, 0);
+         std::cout << directionAleatoire << std::endl;
+         
+         int anciennePositionX = positionChercheur[0][Proprietes::x];
+         int anciennePositionY = positionChercheur[0][Proprietes::y];
+         
+         if(directionAleatoire == 0){
+            positionChercheur[0][Proprietes::y] -= 1;
+         }
+         else if (directionAleatoire == 1){
+            positionChercheur[0][Proprietes::y] += 1;
+         }
+         else if (directionAleatoire == 2){
+            positionChercheur[0][Proprietes::x] -= 1;
+         }
+         else if (directionAleatoire == 3){
+            positionChercheur[0][Proprietes::x] += 1;
+         }
+         
+         remplacerCase(carte, positionChercheur[0][Proprietes::x] , positionChercheur[0][Proprietes::y],
+                 positionChercheur[0][Proprietes::type]);
+         
+         remplacerCase(carte, anciennePositionX, anciennePositionY, Carte::TypeCase::VIDE);
 
-      // remplacer la case où est maintenant l'élément et si ce n'est pas possible ne rien changeer à la carte
-      remplacerCase(carte, elements[numElement][Proprietes::x] , elements[0][Proprietes::y], elements[numElement][Proprietes::type]);
-      
-      return carte[elements[numElement][Proprietes::y]][elements[numElement][Proprietes::x]];
-   }
-
-   int bougerAleatoirement(int carte[HAUTEUR][LARGEUR], int elements[][NB_PROPRIETES], const int numElement) {
-      int directionAleatoire = nombreAleatoire(sizeof(Carte::Direction));
-      
-      return bouger(carte, elements, numElement, Carte::Direction(directionAleatoire));
    }
    
    void definirType(int elements[][NB_PROPRIETES], const size_t nbElements, const int type) {
