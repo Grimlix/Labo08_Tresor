@@ -9,14 +9,14 @@ bool saisieUtilisateur(int nbDeSimulations)
    //On recommence tant que la saisie n'est pas correcte
    do
    {      
-      cout << "Entrez le nombre de chercheurs [" 
+      cout << "Entrez le nombre de simulations [" 
       << MIN_SIMULATION << " - " << MAX_SIMULATION << "]" << endl ;
       
       cin >> nbDeSimulations ; 
 
       //Si l'utilisateur remplit correctement les champs 
       if(!cin.fail()){
-         if(controleSaisie( nbDeSimulations , MIN_SIMULATION , MAX_SIMULATION, "Nombre d'elements incorrect !")){
+         if(controleSaisie( nbDeSimulations , MIN_SIMULATION , MAX_SIMULATION, "Nombre de simulations incorrect !")){
             saisieCorrect = true ;
          }
       VIDER_BUFFER ;

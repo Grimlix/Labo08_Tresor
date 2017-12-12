@@ -6,7 +6,7 @@
 #include "elements.h"
 #include "etats.h"
 
-int simulation(int carte[HAUTEUR][LARGEUR]) {
+int simulation(int carte[HAUTEUR][LARGEUR], int& pas, int& nombreDeVictoires) {
    initialiserAleatoire();
 
    viderCarte(carte);
@@ -17,7 +17,7 @@ int simulation(int carte[HAUTEUR][LARGEUR]) {
    int lacs[NB_LACS][Terrains::NB_PROPRIETES];
    int chercheurs[NB_CHERCHEURS][Elements::NB_PROPRIETES];
    int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
-
+   
    // définir les types des tableaux d'éléments / de terrain
    definirTypeTerrains(lacs, NB_LACS, Carte::TypeCase::LAC);
    definirTypeElements(chercheurs, NB_CHERCHEURS, Carte::TypeCase::CHERCHEUR);
@@ -32,7 +32,6 @@ int simulation(int carte[HAUTEUR][LARGEUR]) {
    int yInitial = chercheurs[0][Elements::Proprietes::y];
 
    for(size_t essai = 0; essai < NB_ESSAIS; ++essai) {
-      int pas = 0;
       // réinitialiser chercheur
       chercheurs[essai][Elements::Proprietes::x] = xInitial;
       chercheurs[essai][Elements::Proprietes::y] = yInitial;
@@ -49,6 +48,7 @@ int simulation(int carte[HAUTEUR][LARGEUR]) {
             chercheurs[essai][Elements::Proprietes::etat] = Etats::NOYE;
             std::cout << "Le chercheur s'est noye" << std::endl;
          } else if(estRiche(chercheurs, tresors)) {
+            nombreDeVictoires++;
             chercheurs[essai][Elements::Proprietes::etat] = Etats::RICHE;
             std::cout << "Le chercheur a trouve le tresor" << std::endl;
          } else if(estPerdu(chercheurs)) {
@@ -57,12 +57,11 @@ int simulation(int carte[HAUTEUR][LARGEUR]) {
          }
       } while(chercheurs[essai][Elements::Proprietes::etat] == Etats::EXPLORE);
    }
-   
    positionerElements(carte, chercheurs, NB_CHERCHEURS);
    positionerElements(carte, tresors, NB_CHERCHEURS);
    // afficher la carte avec les positions initiales
    afficherCarte(carte);
-
+   
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
