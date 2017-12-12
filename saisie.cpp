@@ -1,8 +1,9 @@
 #include "saisie.h"
 
-bool saisieUtilisateur(int nbDeSimulations)
+int saisieUtilisateur()
 {
-   
+   int nbDeSimulations;
+
    bool saisieCorrect = false ;
    //Variables entrées par l'utilisateur
    int nbreChercheur;
@@ -19,9 +20,12 @@ bool saisieUtilisateur(int nbDeSimulations)
          if(controleSaisie( nbDeSimulations , MIN_SIMULATION , MAX_SIMULATION, "Nombre de simulations incorrect !")){
             saisieCorrect = true ;
          }
-      VIDER_BUFFER ;
+         
+         VIDER_BUFFER;
       }
-   }while(!saisieCorrect) ;
+   } while(!saisieCorrect) ;
+   
+   return nbDeSimulations;
 }
 
 bool controleSaisie( int valeur , unsigned int limiteInf , unsigned limiteSup , string message){

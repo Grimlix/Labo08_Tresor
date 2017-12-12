@@ -26,9 +26,6 @@ void positionerElement(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_
 }
 
 int bougerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], int numElement, Carte::Direction direction) {
-   // remplacer la case où l'élément était par du vide
-   remplacerCase(carte, elements[numElement][Elements::Proprietes::x] , elements[0][Elements::Proprietes::y], Carte::TypeCase::VIDE);
-
    switch(direction) {
       case Carte::Direction::NORD :
          elements[numElement][Elements::Proprietes::y] -= 1;
@@ -44,9 +41,7 @@ int bougerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROP
          break;
    }
 
-   // remplacer la case où est maintenant l'élément et si ce n'est pas possible ne rien changeer à la carte
-   remplacerCase(carte, elements[numElement][Elements::Proprietes::x] , elements[0][Elements::Proprietes::y], elements[numElement][Elements::Proprietes::type]);
-
+   // retourne l'élément qui est sur la case de destination
    return carte[elements[numElement][Elements::Proprietes::y]][elements[numElement][Elements::Proprietes::x]];
 }
 

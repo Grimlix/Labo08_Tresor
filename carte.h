@@ -6,9 +6,8 @@
 // 20 * 20 pour tester mais normalement 100, 200
 const size_t LARGEUR   = 20;
 const size_t HAUTEUR   = 20;
-const size_t NB_ESSAIS = 10000;
+const size_t NB_ESSAIS = 100000;
 
-const size_t NB_CHERCHEURS = NB_ESSAIS;
 const size_t NB_TRESORS = 1;
 const size_t NB_LACS = 3;
 
@@ -17,7 +16,7 @@ namespace Carte {
    enum Direction { NORD, SUD, OUEST, EST };
 }
 
-int simulation(int carte[HAUTEUR][LARGEUR], int& pas, int& nombreDeVictoires);
+int simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoires, int nbEssai);
 
 void viderCarte(int carte[HAUTEUR][LARGEUR]);
 

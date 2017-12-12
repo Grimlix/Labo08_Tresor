@@ -11,13 +11,13 @@ namespace Etats {
 bool estMort(int nbrePas);
 
 bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
-        int lacs[][Terrains::NB_PROPRIETES], size_t numChercheur = 0);  
+        int lacs[][Terrains::NB_PROPRIETES], size_t numChercheur);  
    
-bool estPerdu(int chercheurs[][Elements::NB_PROPRIETES]);
+bool estPerdu(int chercheurs[][Elements::NB_PROPRIETES], size_t numChercheur);
 
 bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
             int tresors[][Elements::NB_PROPRIETES],
-            size_t numChercheur = 0);
+            size_t numChercheur);
 
 
 #endif /* ETATS_H */

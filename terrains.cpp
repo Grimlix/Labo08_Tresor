@@ -19,7 +19,7 @@ void positionerTerrains(int carte[HAUTEUR][LARGEUR], int terrains[][Terrains::NB
             int xPrecedent     = terrains[terrainPrecedent][Terrains::Proprietes::x];
             int yPrecedent     = terrains[terrainPrecedent][Terrains::Proprietes::y];
             int rayonPrecedent = terrains[terrainPrecedent][Terrains::Proprietes::rayon];
-            chevauche = (distancePoint(x, y, xPrecedent, yPrecedent) <= rayon + rayonPrecedent);
+            chevauche = (distancePoint(x, y, xPrecedent, yPrecedent) <= rayon + rayonPrecedent + 2);
          }
       } while(not(carte[y][x] == Carte::TypeCase::VIDE) && chevauche);
 

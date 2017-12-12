@@ -7,10 +7,10 @@
 
 using namespace std;
 
-bool estMort(int nbrePas) { 
+bool estMort(int nbrePas) {
    const int pasMaximum = HAUTEUR * LARGEUR;
    
-   return(nbrePas > pasMaximum);
+   return (nbrePas > pasMaximum);
 }
 
 bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
@@ -28,26 +28,24 @@ bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
       rayonLac = lacs[lac][Terrains::Proprietes::rayon];
       
       // si le chercheur est dans le rayon d'un lac il s'est noyé
-      if(distancePoint(x, y, centreLacX, centreLacY) <= rayonLac);
-   }
-} 
-
-   bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES]){
-      const int largeurMin = 0;
-      const int longueurMin = 0;
-      int longueurMax = LARGEUR;
-      int largeurMax = HAUTEUR;
-
-      int x = positionChercheur[0][Elements::Proprietes::x];
-      int y = positionChercheur[0][Elements::Proprietes::y];
-
-      if(x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax){
-         std::cout << "Le chercheur s'est perdu" << std::endl;
+      if(distancePoint(x, y, centreLacX, centreLacY) <= rayonLac)
          return true;
    }
    
    return false;
-}   
+} 
+
+bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES], size_t numChercheur) {
+   const int largeurMin = 0;
+   const int longueurMin = 0;
+   int longueurMax = LARGEUR;
+   int largeurMax = HAUTEUR;
+
+   int x = positionChercheur[numChercheur][Elements::Proprietes::x];
+   int y = positionChercheur[numChercheur][Elements::Proprietes::y];
+
+   return (x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax);
+}
 
 bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
             int tresors[][Elements::NB_PROPRIETES],
@@ -55,9 +53,14 @@ bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
 
    int xC = chercheurs[numChercheur][Elements::Proprietes::x];
    int yC = chercheurs[numChercheur][Elements::Proprietes::y];
+ 
+   for(int tresor = 0; tresor < NB_TRESORS; ++tresor) {
+      int xT = tresors[tresor][Elements::Proprietes::x];
+      int yT = tresors[tresor][Elements::Proprietes::y];
+      
+      if(xC == xT && yC == yT)
+         return true;
+   }
 
-   int xT = tresors[numChercheur][Elements::Proprietes::x];
-   int yT = tresors[numChercheur][Elements::Proprietes::y];
-   
-   return(xC == xT && yC == yT);
+   return false;
 }
