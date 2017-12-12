@@ -24,29 +24,43 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
    definirTypeElements(tresors, NB_TRESORS, Carte::TypeCase::TRESOR);
  
    positionerTerrains(carte, lacs, NB_LACS);
-   positionerElements(carte, chercheurs, NB_CHERCHEURS);
-   positionerElements(carte, tresors, NB_CHERCHEURS);
-   afficherCarte(carte);
+   positionerElements(carte, tresors, NB_TRESORS);
+   positionerElement(carte, chercheurs, 0);
    
-   bool etatChercheur;
-   int pas = 0;
-   do{
+   int xInitial = chercheurs[0][Elements::Proprietes::x];
+   int yInitial = chercheurs[0][Elements::Proprietes::y];
+
+   for(size_t essai = 0; essai < NB_ESSAIS; ++essai) {
+      int pas = 0;
+      // réinitialiser chercheur
+      chercheurs[essai][Elements::Proprietes::x] = xInitial;
+      chercheurs[essai][Elements::Proprietes::y] = yInitial;
+      chercheurs[essai][Elements::Proprietes::etat] = Etats::EXPLORE;
       
-      bougerAleatoirementElements(carte, chercheurs, 0);
-      afficherCarte(carte);
-      std::cout << std::endl;
-      pas++;
-      
-      etatChercheur = estMort(pas);
-      etatChercheur = estDansLac(chercheurs, lacs);
-      etatChercheur = aGagne(chercheurs, tresors);
-      etatChercheur = estPerdu(chercheurs);
-        
-   }while(etatChercheur == false);
+      do {
+         bougerAleatoirementElements(carte, chercheurs);
+         pas++;
+
+         if(estMort(pas)) {
+            chercheurs[essai][Elements::Proprietes::etat] = Etats::MORT;
+            std::cout << "Le chercheur est mort de faim" << std::endl;
+         } else if(estDansLac(chercheurs, lacs)) {
+            chercheurs[essai][Elements::Proprietes::etat] = Etats::NOYE;
+            std::cout << "Le chercheur s'est noye" << std::endl;
+         } else if(estRiche(chercheurs, tresors)) {
+            chercheurs[essai][Elements::Proprietes::etat] = Etats::RICHE;
+            std::cout << "Le chercheur a trouve le tresor" << std::endl;
+         } else if(estPerdu(chercheurs)) {
+            chercheurs[essai][Elements::Proprietes::etat] = Etats::PERDU;
+            std::cout << "Le chercheur s'est perdu" << std::endl;
+         }
+      } while(chercheurs[essai][Elements::Proprietes::etat] == Etats::EXPLORE);
+   }
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
-   if((y >= 0 && y <= HAUTEUR - 1) && (x >= 0 && x <= LARGEUR - 1)) {
+   if((y >= 0 && y <= HAUTEUR - 1) && (x >= 0 && x <= LARGEUR - 1)
+       && carte[y][x] == Carte::TypeCase::VIDE) {
       carte[y][x] = type;
 
       return true;

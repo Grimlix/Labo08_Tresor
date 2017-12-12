@@ -2,83 +2,60 @@
 #include "aleatoire.h"
 #include "carte.h"
 
-
 #include <cstdlib>
 #include <cmath>
 
 using namespace std;
 
+bool estMort(int nbrePas) { 
+   const int pasMaximum = HAUTEUR * LARGEUR;
+   
+   return(nbrePas > pasMaximum);
+}
 
-bool estMort (int nbrePas){ 
-      const int pasMaximum = HAUTEUR * LARGEUR;
-      if (nbrePas > pasMaximum){
-         std::cout << "Le chercheur est mort de faim" << std::endl;
-         return true;
-      }
-      else{
-         return false;
-      } 
-   }
+bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
+        int lacs[][Terrains::NB_PROPRIETES], size_t numChercheur) {
 
-   bool estDansLac(int positionChercheur[][Elements::NB_PROPRIETES],
-           int positionLacs[][Terrains::NB_PROPRIETES]){
+   int x = chercheurs[numChercheur][Elements::Proprietes::x];
+   int y = chercheurs[numChercheur][Elements::Proprietes::y];
+   int centreLacX;
+   int centreLacY;
+   int rayonLac;
 
-      int x = positionChercheur[0][Elements::Proprietes::x];
-      int y = positionChercheur[0][Elements::Proprietes::y];
-      int centreX = positionLacs[0][Elements::Proprietes::x];
-      int centreY = positionLacs[0][Elements::Proprietes::y];
-      int rayon = positionLacs[0][Terrains::Proprietes::rayon];
+   for(int lac = 0; lac < NB_LACS; ++lac) {
+      centreLacX = lacs[lac][Elements::Proprietes::x];
+      centreLacY = lacs[lac][Elements::Proprietes::y];
+      rayonLac = lacs[lac][Terrains::Proprietes::rayon];
       
-//      char chercheur = Carte::TypeCase::CHERCHEUR;
-//      char lac = Carte::TypeCase::LAC;
-//      
-//      if(bool estDansEau = creerDisque(carte, )){
-//         std::cout << "Le chercheur s'est noye" << std::endl;
-//         return true;  
-//     }
-
-      if(pow((x-centreX),2)+pow((y-centreY),2) <= rayon*rayon){
-         std::cout << "Le chercheur s'est noye" << std::endl;
-         return true; 
-      }
-      else {
-         return false;
-      }
-   }   
-
-   bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES]){
-      const int largeurMin = 0;
-      const int longueurMin = 0;
-      int longueurMax = LARGEUR;
-      int largeurMax = HAUTEUR;
-
-      int x = positionChercheur[0][Elements::Proprietes::x];
-      int y = positionChercheur[0][Elements::Proprietes::y];
-
-      if(x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax){
-         std::cout << "Le chercheur s'est perdu" << std::endl;
+      // si le chercheur est dans le rayon d'un lac il s'est noyé
+      if(distancePoint(x, y, centreLacX, centreLacY) <= rayonLac)
          return true;
-      }
-      else {
-         return false;
-      }
    }
+   
+   return false;
+}   
 
-   bool aGagne(int positionChercheur[][Elements::NB_PROPRIETES],
-               int positionTresor[][Elements::NB_PROPRIETES]){
+bool estPerdu(int chercheurs[][Elements::NB_PROPRIETES], size_t numChercheur){
+   const int largeurMin  = 0;
+   const int longueurMin = 0;
+   int longueurMax       = LARGEUR - 1;
+   int largeurMax        = HAUTEUR - 1;
 
-      int xC = positionChercheur[0][Elements::Proprietes::x];
-      int yC = positionChercheur[0][Elements::Proprietes::y];
+   int x = chercheurs[numChercheur][Elements::Proprietes::x];
+   int y = chercheurs[numChercheur][Elements::Proprietes::y];
 
-      int xT = positionTresor[0][Elements::Proprietes::x];
-      int yT = positionTresor[0][Elements::Proprietes::y];
+   return(x < largeurMin || x > largeurMax || y < longueurMin || y > longueurMax);
+}
 
+bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
+            int tresors[][Elements::NB_PROPRIETES],
+            size_t numChercheur) {
 
-      if(xC == xT && yC == yT){
-         std::cout << "Le chercheur a trouve le tresor" << std::endl;
-         return true;
-      }
-      else {
-         return false;
-      }
-   }
+   int xC = chercheurs[numChercheur][Elements::Proprietes::x];
+   int yC = chercheurs[numChercheur][Elements::Proprietes::y];
+
+   int xT = tresors[numChercheur][Elements::Proprietes::x];
+   int yT = tresors[numChercheur][Elements::Proprietes::y];
+   
+   return(xC == xT && yC == yT);
+}

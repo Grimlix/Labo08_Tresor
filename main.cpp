@@ -30,7 +30,6 @@ int main() {
    int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
            
    creerCarte(carte);
-   afficherCarte(carte);
 
    return EXIT_SUCCESS;
 }

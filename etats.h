@@ -4,13 +4,20 @@
 #include "elements.h"
 #include "terrains.h"
 
-bool estMort (int nbrePas);
+namespace Etats {
+   enum EtatsChercheur { EXPLORE, MORT, NOYE, PERDU, RICHE };
+}
 
-bool estDansLac(int positionChercheur[][Elements::NB_PROPRIETES], int positionsLacs[][Terrains::NB_PROPRIETES]);  
+bool estMort(int nbrePas);
+
+bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
+        int lacs[][Terrains::NB_PROPRIETES], size_t numChercheur = 0);  
    
-bool estPerdu(int positionChercheur[][Elements::NB_PROPRIETES]);
+bool estPerdu(int chercheurs[][Elements::NB_PROPRIETES], size_t numChercheur = 0);
 
-bool aGagne(int positionChercheur[][Elements::NB_PROPRIETES], int positionTresor[][Elements::NB_PROPRIETES]);
+bool estRiche(int chercheurs[][Elements::NB_PROPRIETES],
+            int tresors[][Elements::NB_PROPRIETES],
+            size_t numChercheur = 0);
 
 
 #endif /* ETATS_H */

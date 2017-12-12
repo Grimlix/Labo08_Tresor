@@ -4,10 +4,11 @@
 #include <iostream> // size_t
 
 // 20 * 20 pour tester mais normalement 100, 200
-const size_t LARGEUR = 20;
-const size_t HAUTEUR = 20;
+const size_t LARGEUR   = 20;
+const size_t HAUTEUR   = 20;
+const size_t NB_ESSAIS = 10000;
 
-const size_t NB_CHERCHEURS = 1;
+const size_t NB_CHERCHEURS = NB_ESSAIS;
 const size_t NB_TRESORS = 1;
 const size_t NB_LACS = 3;
 
