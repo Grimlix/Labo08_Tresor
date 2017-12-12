@@ -17,7 +17,7 @@ namespace Carte {
    enum Direction { NORD, SUD, OUEST, EST };
 }
 
-void creerCarte(int carte[HAUTEUR][LARGEUR]);
+int simulation(int carte[HAUTEUR][LARGEUR]);
 
 void viderCarte(int carte[HAUTEUR][LARGEUR]);
 

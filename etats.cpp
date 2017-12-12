@@ -28,12 +28,12 @@ bool estDansLac(int chercheurs[][Elements::NB_PROPRIETES],
       rayonLac = lacs[lac][Terrains::Proprietes::rayon];
       
       // si le chercheur est dans le rayon d'un lac il s'est noyé
-      if(distancePoint(x, y, centreLacX, centreLacY) <= rayonLac)
+      if(distancePoint(x, y, centreLacX, centreLacY) <= rayonLac){
          return true;
-   }
+      }
+   } 
+}
    
-   return false;
-}   
 
 bool estPerdu(int chercheurs[][Elements::NB_PROPRIETES], size_t numChercheur){
    const int largeurMin  = 0;

@@ -6,23 +6,29 @@
 #include "elements.h"
 #include "etats.h"
 
-void creerCarte(int carte[HAUTEUR][LARGEUR]) {
+int simulation(int carte[HAUTEUR][LARGEUR]) {
    initialiserAleatoire();
 
    viderCarte(carte);
    
    ////////////
-   // ELEMENTS
+   //ELEMENTS//
    ////////////
    int lacs[NB_LACS][Terrains::NB_PROPRIETES];
    int chercheurs[NB_CHERCHEURS][Elements::NB_PROPRIETES];
    int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
+   
+   // variables d'états
+   bool perdu, gagne, mort, noye;
+   
+   int pas = 0;
 
    // définir les types des tableaux d'éléments / de terrain
    definirTypeTerrains(lacs, NB_LACS, Carte::TypeCase::LAC);
    definirTypeElements(chercheurs, NB_CHERCHEURS, Carte::TypeCase::CHERCHEUR);
    definirTypeElements(tresors, NB_TRESORS, Carte::TypeCase::TRESOR);
  
+   // positionnner tous les éléments
    positionerTerrains(carte, lacs, NB_LACS);
    positionerElements(carte, tresors, NB_TRESORS);
    positionerElement(carte, chercheurs, 0);
@@ -56,6 +62,12 @@ void creerCarte(int carte[HAUTEUR][LARGEUR]) {
          }
       } while(chercheurs[essai][Elements::Proprietes::etat] == Etats::EXPLORE);
    }
+   
+   positionerElements(carte, chercheurs, NB_CHERCHEURS);
+   positionerElements(carte, tresors, NB_CHERCHEURS);
+   // afficher la carte avec les positions initiales
+   afficherCarte(carte);
+
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
