@@ -17,11 +17,6 @@ int simulation(int carte[HAUTEUR][LARGEUR]) {
    int lacs[NB_LACS][Terrains::NB_PROPRIETES];
    int chercheurs[NB_CHERCHEURS][Elements::NB_PROPRIETES];
    int tresors[NB_TRESORS][Elements::NB_PROPRIETES];
-   
-   // variables d'états
-   bool perdu, gagne, mort, noye;
-   
-   int pas = 0;
 
    // définir les types des tableaux d'éléments / de terrain
    definirTypeTerrains(lacs, NB_LACS, Carte::TypeCase::LAC);
