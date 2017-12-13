@@ -4,12 +4,13 @@ int saisieUtilisateur()
 {
    int nbDeSimulations;
 
-   bool saisieCorrect = false ;
+   bool saisieCorrect = false;
+   
    //Variables entrées par l'utilisateur
    int nbreChercheur;
+   
    //On recommence tant que la saisie n'est pas correcte
-   do
-   {      
+   do{  
       cout << "Entrez le nombre de simulations [" 
       << MIN_SIMULATION << " - " << MAX_SIMULATION << "]" << endl ;
       
@@ -20,10 +21,9 @@ int saisieUtilisateur()
          if(controleSaisie( nbDeSimulations , MIN_SIMULATION , MAX_SIMULATION, "Nombre de simulations incorrect !")){
             saisieCorrect = true ;
          }
-         
          VIDER_BUFFER;
       }
-   } while(!saisieCorrect) ;
+   } while(!saisieCorrect); // On recommence tant que la saisie n'est pas correcte
    
    return nbDeSimulations;
 }
@@ -65,7 +65,7 @@ bool recommencerProgramme()
       }
       VIDER_BUFFER;
       
-   }while (!saisieOK);
+   }while (!saisieOK); // On recommence tant que la saisie n'est pas correcte
    
    return recommencerProgramme ;
 }

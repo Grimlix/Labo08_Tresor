@@ -1,18 +1,23 @@
 #ifndef SAISIE_H
 #define SAISIE_H
 
-#include <cstdlib>  // Pour exit_success
 #include <iostream> // Pour les entrées et sorties
 #include <limits>   // Pour vider le buffer
-#include "carte.h"
+
 #define VIDER_BUFFER if(cin.fail()) cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n')
 
-using namespace std ;
+// anemspace std car on utilise des string
+using namespace std; 
 
 //Déclaration des constantes utilisée pour la saisie
 const unsigned int MIN_SIMULATION = 1,
                    MAX_SIMULATION = 100000;
 
+/**
+ * Fonction ou l'utilisateur va entrer sa saisie, elle va ensuite contrôler
+ * que se soit correcte avec controleSaisie. 
+ * @return true si la saisie est correct , sinon false
+ */
 int saisieUtilisateur();
 
 /**

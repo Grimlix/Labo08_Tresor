@@ -8,8 +8,8 @@ float calculePourcentage(int valeur , int total) {
    return pourcentage ;
 }
 
-int calculeTotal(int valeur, int total){
-   float reponse;
+int calculeMoyenne(int valeur, int total){
+   int reponse;
    reponse = (valeur / total);
    return reponse;  
 }
