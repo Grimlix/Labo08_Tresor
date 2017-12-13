@@ -10,7 +10,7 @@
 using namespace std ;
 
 //Déclaration des constantes utilisée pour la saisie
-const unsigned int MIN_SIMULATION = 0 ,
+const unsigned int MIN_SIMULATION = 1 ,
                    MAX_SIMULATION = 100000;
 
 int saisieUtilisateur();
