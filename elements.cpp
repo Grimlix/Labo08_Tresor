@@ -1,8 +1,5 @@
-#include "aleatoire.h"
-#include "terrains.h" // nombreAleatoire
+#include "aleatoire.h" // nombreAleatoire
 #include "elements.h"
-
-#include <cmath>
 
 void positionerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], const size_t nbElements) {
    for(size_t element = 0; element < nbElements; ++element) {
@@ -10,22 +7,24 @@ void positionerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB
    }
 }
 
-void positionerElement(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], int numElement) {
+void positionerElement(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], const size_t numElement) {
    int x;
    int y;
 
    do {
+      // on définit des coordonées aléatoirement
       x = nombreAleatoire(LARGEUR - 1, 0);
       y = nombreAleatoire(HAUTEUR - 1, 0);
-   } while(not(carte[y][x] == Carte::TypeCase::VIDE));
+   } while(carte[y][x] != Carte::TypeCase::VIDE); // on s'assure que la case est vide
 
    elements[numElement][Elements::Proprietes::x] = x;
    elements[numElement][Elements::Proprietes::y] = y;
 
+   // on place l'élément sur la carte
    remplacerCase(carte, x, y, elements[numElement][Elements::Proprietes::type]);
 }
 
-int bougerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], int numElement, Carte::Direction direction) {
+void bougerElement(int elements[][Elements::NB_PROPRIETES], const size_t numElement, Carte::Direction direction) {
    switch(direction) {
       case Carte::Direction::NORD :
          elements[numElement][Elements::Proprietes::y] -= 1;
@@ -39,16 +38,17 @@ int bougerElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROP
       case Carte::Direction::EST :
          elements[numElement][Elements::Proprietes::x] += 1;
          break;
+      default :
+         std::cout << "Erreur : la direction " << direction << " n'existe pas !\n";
+         break;
    }
-
-   // retourne l'élément qui est sur la case de destination
-   return carte[elements[numElement][Elements::Proprietes::y]][elements[numElement][Elements::Proprietes::x]];
 }
 
-int bougerAleatoirementElements(int carte[HAUTEUR][LARGEUR], int elements[][Elements::NB_PROPRIETES], const int numElement) {
-   int directionAleatoire = nombreAleatoire(sizeof(Carte::Direction));
+void bougerAleatoirementElement(int elements[][Elements::NB_PROPRIETES], const size_t numElement) {
+   // on choisit une direction aléatoirement, -1 car 
+   int directionAleatoire = nombreAleatoire(sizeof(Carte::Direction)-1);
 
-   return bougerElements(carte, elements, numElement, Carte::Direction(directionAleatoire));
+   bougerElement(elements, numElement, Carte::Direction(directionAleatoire));
 }
 
 void definirTypeElements(int elements[][Elements::NB_PROPRIETES], const size_t nbElements, const int type) {

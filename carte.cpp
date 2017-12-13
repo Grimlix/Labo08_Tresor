@@ -6,7 +6,7 @@
 #include "elements.h"
 #include "etats.h"
 
-int simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoires, int nbEssai) {
+void simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoires, int nbEssai) {
    initialiserAleatoire();
 
    viderCarte(carte);
@@ -47,7 +47,7 @@ int simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoir
       chercheurs[essai][Elements::Proprietes::etat] = Etats::EXPLORE;
       
       do {
-         bougerAleatoirementElements(carte, chercheurs, essai);
+         bougerAleatoirementElement(chercheurs, essai);
          pas++;
 
          if(estMort(pas)) {
@@ -72,6 +72,9 @@ int simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoir
       // on ajoute le nombre de pas du chercheur au nombre de pas total
       pasTotaux += pas;
    }
+   
+   // affiche la carte utilisée par la simulation
+   afficherCarte(carte);
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {

@@ -1,7 +1,7 @@
 /*
  -----------------------------------------------------------------------------------
  Laboratoire : Labo_08
- Fichier     : <nom du fichier>.cpp
+ Fichier     : labo08_Walther_Hungerbuhler.cpp
  Auteur(s)   : Simon Walther et Nicolas Hungerbühler 
  Date        : 13.12.2017
 
@@ -14,7 +14,7 @@
 
  Remarque(s) : La carte est générée aléatoirement. 
 
- Compilateur : MinGW-g++ 
+ Compilateur : MinGW-g++ <6.3.0>
  -----------------------------------------------------------------------------------
  */
 
