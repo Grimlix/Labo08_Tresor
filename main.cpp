@@ -1,15 +1,15 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratoire : <nn>
+ Laboratoire : Labo_08
  Fichier     : <nom du fichier>.cpp
- Auteur(s)   : <prénom> <nom>
- Date        : <jj.mm.aaaa>
+ Auteur(s)   : SImon Walther et Nicolas Hungerbühler 
+ Date        : 13.12.2017
 
  But         : <à compléter>
 
  Remarque(s) : <à compléter>
 
- Compilateur : MinGW-g++ <x.y.z>
+ Compilateur : MinGW-g++ 
  -----------------------------------------------------------------------------------
  */
 

@@ -52,19 +52,22 @@ int simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoir
 
          if(estMort(pas)) {
             chercheurs[essai][Elements::Proprietes::etat] = Etats::MORT;
-            //std::cout << "Le chercheur est mort de faim" << std::endl;
+            std::cout << "Le chercheur " << essai << " est mort de faim" << std::endl;
          } else if(estDansLac(chercheurs, lacs, essai)) {
             chercheurs[essai][Elements::Proprietes::etat] = Etats::NOYE;
-            //std::cout << "Le chercheur s'est noye" << std::endl;
+            std::cout << "Le chercheur " << essai << " s'est noye" << std::endl;
          } else if(estRiche(chercheurs, tresors, essai)) {
             chercheurs[essai][Elements::Proprietes::etat] = Etats::RICHE;
             nombreDeVictoires += 1;
-            //std::cout << "Le chercheur a trouve le tresor" << std::endl;
+            std::cout << "Le chercheur " << essai <<  "a trouve le tresor" << std::endl;
          } else if(estPerdu(chercheurs, essai)) {
             chercheurs[essai][Elements::Proprietes::etat] = Etats::PERDU;
-            //std::cout << "Le chercheur s'est perdu" << std::endl;
+            std::cout << "Le chercheur " << essai << " s'est perdu" << std::endl;
          }
       } while(chercheurs[essai][Elements::Proprietes::etat] == Etats::EXPLORE);
+      
+      std::cout << "Il a fait : " << pas << " pas" << std::endl;
+      
       
       // on ajoute le nombre de pas du chercheur au nombre de pas total
       pasTotaux += pas;
