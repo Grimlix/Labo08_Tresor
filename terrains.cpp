@@ -12,6 +12,9 @@ void positionerTerrains(int carte[HAUTEUR][LARGEUR], int terrains[][Terrains::NB
          x = nombreAleatoire(LARGEUR - 1, 0);
          y = nombreAleatoire(HAUTEUR - 1, 0);
 
+         // le rayon maximum est définit comme étant
+         // la moyenne de la largeur et de la hauteur de la carte
+         // divisé par 2 * le nombre de terrains à placer
          rayon = nombreAleatoire(((LARGEUR - 1) + (HAUTEUR - 1)) / (2 * nbTerrains), 1);
 
          // vérifier que les lacs ne se chevauchent pas
@@ -22,8 +25,6 @@ void positionerTerrains(int carte[HAUTEUR][LARGEUR], int terrains[][Terrains::NB
             chevauche = (distancePoint(x, y, xPrecedent, yPrecedent) <= rayon + rayonPrecedent + 2);
          }
       } while(not(carte[y][x] == Carte::TypeCase::VIDE) && chevauche);
-
-
 
       terrains[terrain][Terrains::Proprietes::x] = x;
       terrains[terrain][Terrains::Proprietes::y] = y;

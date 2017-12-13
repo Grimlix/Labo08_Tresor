@@ -78,8 +78,7 @@ void simulation(int carte[HAUTEUR][LARGEUR], int& pasTotaux, int& nombreDeVictoi
 }
 
 bool remplacerCase(int carte[HAUTEUR][LARGEUR], const int x, const int y, const int type) {
-   if((y >= 0 && y <= HAUTEUR - 1) && (x >= 0 && x <= LARGEUR - 1)) {
-      
+   if((y >= 0 && y <= HAUTEUR - 1) && (x >= 0 && x <= LARGEUR - 1)) {  
       carte[y][x] = type;
 
       return true;

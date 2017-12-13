@@ -9,8 +9,21 @@ namespace Terrains {
    const int NB_PROPRIETES = sizeof(Proprietes);
 }
 
-void positionerTerrains(int carte[HAUTEUR][LARGEUR], int elements[][Terrains::NB_PROPRIETES], const size_t nbElements);
+/**
+ * place aléatoirement les terrains d'un tableau de terrain sur la carte
+ * @param carte       la carte
+ * @param terrains    le tableau de terrain
+ * @param nbTerrains  le nombre de terrain
+ */
+void positionerTerrains(int carte[HAUTEUR][LARGEUR], int terrains[][Terrains::NB_PROPRIETES], const size_t nbTerrains);
    
+/**
+ * prend un tableau de terrain et change le type
+ * pour le type voulu pour tout ce tableau
+ * @param terrains    le tableau de terrain
+ * @param nbTerrains  le nombre de terrain
+ * @param type        le type désiré
+ */
 void definirTypeTerrains(int terrains[][Terrains::NB_PROPRIETES], const size_t nbTerrains, const int type);
 
 
